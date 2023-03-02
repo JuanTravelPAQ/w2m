@@ -1,3 +1,15 @@
-p {
-    color: var(--grey100);
+.form-hero {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 32rem;
+    padding: 2rem;
+    background-color: var(--grey20);
+    border-radius: 1rem;
+    color: var(--grey90);
+    margin: auto;
+}
+
+.radio-button {
+    margin-bottom: 1rem;
 }

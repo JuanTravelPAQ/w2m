@@ -1,33 +1,30 @@
-<p>
-  new-edit-hero works! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-  Facilis ipsa libero quas laborum error, ullam accusantium corrupti architecto
-  nulla maxime saepe similique aperiam optio cum molestiae reprehenderit nisi
-  eum? Ea! Vel placeat illo deleniti. Optio autem omnis dolore quae aliquam!
-  Mollitia ex praesentium similique eveniet enim id nobis, est dicta, minima
-  totam cumque voluptatibus distinctio? Cupiditate nisi id aliquid harum.
-  Commodi itaque, placeat, tempora ipsam dolores facere minus repellendus
-  possimus error delectus atque alias id ducimus a hic veniam esse voluptatibus
-  consequatur corporis magnam? Officiis alias voluptatem aut ipsam ducimus.
-  Porro, perspiciatis animi labore cumque aspernatur voluptatem aliquid adipisci
-  dolore natus ratione distinctio voluptate possimus eligendi laudantium iusto
-  ea similique deserunt non recusandae reprehenderit sunt error officiis. Ea,
-  cumque ipsa? Reprehenderit illo odio omnis qui quia sit veniam dicta incidunt
-  tempora inventore accusantium, nisi facere distinctio nesciunt perspiciatis
-  odit placeat aliquid quae, eius exercitationem eveniet fuga? Facilis quam id
-  voluptate. Dolore, pariatur aliquam. Sed ipsa necessitatibus deleniti itaque
-  consectetur tempora sit modi voluptas ducimus, quaerat mollitia aut aliquam
-  nesciunt consequatur cupiditate! Magnam mollitia ipsum corporis nulla vero
-  veniam repudiandae illo. Enim ducimus aut eveniet odio animi ut repellat
-  inventore nostrum, exercitationem blanditiis tempora corporis cum autem,
-  aliquam, assumenda ratione. Autem ex enim aperiam est repudiandae, eos magnam
-  assumenda harum sapiente? Quam fugiat voluptatibus optio, similique ipsa sit
-  voluptatem aliquam? Architecto ad, natus aperiam debitis modi veritatis alias
-  dolore, dicta aliquam impedit odit aut nam tempore! Sequi nostrum accusantium
-  ipsum qui? Voluptatibus magnam nihil accusantium nulla pariatur et aperiam,
-  illo alias perspiciatis hic ipsam praesentium vitae, placeat error quibusdam
-  eum impedit distinctio itaque blanditiis delectus nobis? Assumenda cum
-  corrupti velit culpa. Neque, qui. Quis veniam delectus qui vitae, molestias
-  nisi nobis, rem excepturi nostrum, eos reprehenderit! Illum quis ipsam quod
-  velit doloremque accusamus ipsum laudantium inventore illo necessitatibus,
-  ullam animi placeat?
-</p>
+<div>
+  <h1>New Hero</h1>
+  <form
+    autocomplete="off"
+    class="form-hero"
+    [formGroup]="miForm"
+    (ngSubmit)="save()"
+  >
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Full Name</mat-label>
+      <input matInput type="text" formControlName="fullName" />
+    </mat-form-field>
+    <label>Gender:</label>
+    <mat-radio-group class="radio-button" formControlName="gender">
+      <mat-radio-button [color]="'primary'" value="male">Male</mat-radio-button>
+      <mat-radio-button [color]="'primary'" value="female"
+        >Female</mat-radio-button
+      >
+    </mat-radio-group>
+    <mat-form-field>
+      <mat-label>Occupation</mat-label>
+      <input matInput type="text" formControlName="occupation" />
+    </mat-form-field>
+    <button mat-flat-button color="primary">Save</button>
+  </form>
+</div>

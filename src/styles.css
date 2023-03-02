@@ -25,17 +25,6 @@
   --secondary800: #0c4265;
   --secondary900: #062032;
 
-  /* Tertary */
-  --tertary50: #f6edff;
-  --tertary100: #f0e2ff;
-  --tertary200: #e2c5ff;
-  --tertary300: #d3a7ff;
-  --tertary400: #c58aff;
-  --tertary500: #b66dff;
-  --tertary600: #9257cc;
-  --tertary700: #6d4199;
-  --tertary800: #492c66;
-  --tertary900: #241633;
 
   /* Success */
   --success50: #edf0cc;
@@ -113,23 +102,21 @@
 body {
   color: var(--white100);
   font-family: "Poppins", sans-serif;
-  height: 100vh;
-  min-height: 800px;
   background: var(--white100);
 }
 
 h1 {
   font-family: "Poppins";
   font-weight: 600;
-  font-size: 64px;
-  line-height: 80px;
+  font-size: 4rem;
+  line-height: 5rem;
   letter-spacing: 2%;
 }
 
 h2 {
   font-family: "Poppins";
   font-weight: 600;
-  font-size: 48px;
+  font-size: 3rem;
   line-height: 56px;
   letter-spacing: 2%;
 }
@@ -254,14 +241,4 @@ h6 {
 .fixed-top {
   top: 0;
   position: fixed;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

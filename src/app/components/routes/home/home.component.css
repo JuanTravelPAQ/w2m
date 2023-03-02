@@ -4,11 +4,11 @@ table {
 
 .mat-column-number,
 .mat-column-state {
-    max-width: 64px;
+    max-width: 4rem;
 }
 
 .mat-column-created {
-    max-width: 124px;
+    max-width: 8rem;
 }
 
 .table-body-actions {
@@ -17,8 +17,46 @@ table {
 
 .paginator {
     width: 100%;
+    border-radius: 0 0 1rem 1rem;
+    overflow: hidden;
 }
 
 .btn-edit {
     color: var(--grey500);
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    background-color: var(--grey10);
+    border-radius: 0 0 1rem 1rem;
+    padding: 1rem;
+}
+
+.filter {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    display: flex;
+    background-color: var(--white100);
+    border-radius: 1rem;
+}
+
+.filter-input {
+    margin-right: 1rem;
+
+}
+
+.container-table {
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: var(--grey10);
+}
+
+table {
+    box-shadow: none;
+    border-radius: 1rem 1rem 0 0;
+    overflow: hidden;
 }

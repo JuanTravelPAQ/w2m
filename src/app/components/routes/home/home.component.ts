@@ -59,6 +59,7 @@ export class HomeComponent {
     };
     instance.dialogRef.afterClosed().subscribe((result) => {
       instance.handleSubmit;
+      console.log(instance);
     });
   }
 
@@ -75,7 +76,7 @@ export class HomeComponent {
         }));
         this.length = response.length;
         console.log(response);
-        this.dataSource = this.dataSource.slice(1, 14);
+        this.dataSource = this.dataSource.slice(0, 10);
       },
       error(err) {
         console.error(err);
