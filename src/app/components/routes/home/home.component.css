@@ -1,0 +1,24 @@
+table {
+    width: 100%;
+}
+
+.mat-column-number,
+.mat-column-state {
+    max-width: 64px;
+}
+
+.mat-column-created {
+    max-width: 124px;
+}
+
+.table-body-actions {
+    display: flex;
+}
+
+.paginator {
+    width: 100%;
+}
+
+.btn-edit {
+    color: var(--grey500);
+}

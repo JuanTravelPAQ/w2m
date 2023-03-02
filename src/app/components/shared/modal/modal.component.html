@@ -1,0 +1,18 @@
+<div>
+  <h1 mat-dialog-title>{{ modelText.title }}</h1>
+  <div mat-dialog-content>{{ modelText.description }}</div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close (cancel)="handleSubmit(false)">
+      {{ modelText.buttonCancel }}
+    </button>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      color="warn"
+      (click)="handleSubmit(true)"
+    >
+      {{ modelText.buttonAccept }}
+    </button>
+  </div>
+</div>
