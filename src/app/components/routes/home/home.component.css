@@ -32,7 +32,7 @@ table {
     margin: 1rem;
     background-color: var(--grey10);
     border-radius: 0 0 1rem 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
 }
 
 .filter {
@@ -51,7 +51,7 @@ table {
 .container-table {
     border-radius: 1rem;
     margin: 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
     background-color: var(--grey10);
 }
 

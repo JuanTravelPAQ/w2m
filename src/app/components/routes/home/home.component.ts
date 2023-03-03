@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { Heroes } from 'src/app/services/models/heroes.model';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Hero } from 'src/app/services/models/heroes.model';
 import { MatDialog } from '@angular/material/dialog';
 import { HeroesService } from 'src/app/services/modules/heroes/heroes.service';
 import { ModalComponent } from '../../shared/modal/modal.component';
@@ -11,13 +11,10 @@ import { ModalComponent } from '../../shared/modal/modal.component';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  length = 0;
   pageSize = 10;
   pageIndex = 0;
-  pageSizeOptions = [5, 10, 25];
-  hidePageSize = true;
 
-  pageEvent: PageEvent | undefined;
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   displayedColumns: string[] = [
     'id',
@@ -27,9 +24,11 @@ export class HomeComponent {
     'occupation',
     'action',
   ];
-  dataSource: TableHeroes[] = [];
+  dataSource: Hero[] = [];
+  dataSourceFilter: Hero[] = [];
 
-  value = '';
+  searchName: string = '';
+  searchId: string = '';
 
   constructor(
     private _heroesService: HeroesService,
@@ -43,7 +42,7 @@ export class HomeComponent {
   openDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string,
-    id: number
+    hero: Hero
   ): void {
     let dialogRef = this.dialog.open(ModalComponent, {
       width: '400px',
@@ -52,59 +51,63 @@ export class HomeComponent {
     });
     let instance = dialogRef.componentInstance;
     instance.modelText = {
-      title: 'Delete hero?',
+      title: `Delete hero "${hero.name}"?`,
       description: 'This option has no way back.',
       buttonAccept: 'Delete',
       buttonCancel: 'Cancel',
     };
-    instance.dialogRef.afterClosed().subscribe((result) => {
-      instance.handleSubmit;
-      console.log(instance);
+    instance.dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) this.delete(20);
     });
   }
 
-  private getAllHeroes() {
-    this._heroesService.getAllHeroes().subscribe({
-      next: (response: Heroes[]) => {
-        this.dataSource = response.map((item: Heroes) => ({
-          id: item.id,
-          name: item.name,
-          fullName: item.biography.fullName,
-          gender: item.appearance.gender,
-          occupation: item.work.occupation,
-          action: '',
-        }));
-        this.length = response.length;
+  private delete(id: number) {
+    this._heroesService.delete(id).subscribe({
+      next: (response: Hero) => {
         console.log(response);
-        this.dataSource = this.dataSource.slice(0, 10);
       },
       error(err) {
         console.error(err);
       },
     });
   }
-  handlePageEvent(e: PageEvent) {
-    console.log(e);
-    this.pageEvent = e;
-    this.length = e.length;
-    this.pageSize = e.pageSize;
-    this.pageIndex = e.pageIndex;
+
+  private getAllHeroes() {
+    this._heroesService.getAllHeroes().subscribe({
+      next: (response: Hero[]) => {
+        this.dataSource = response;
+        this.dataSourceFilter = this.dataSource;
+      },
+      error(err) {
+        console.error(err);
+      },
+    });
   }
 
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    if (setPageSizeOptionsInput) {
-      this.pageSizeOptions = setPageSizeOptionsInput
-        .split(',')
-        .map((str) => +str);
+  search(value: string, type: string) {
+    this.dataSourceFilter = [];
+    if (type === 'id') {
+      this.dataSource.forEach((item) => {
+        if (item.id.toString() === value) this.dataSourceFilter.push(item);
+      });
+    } else {
+      this.dataSource.find((item) => {
+        if (item.name.toLowerCase().includes(value.toLowerCase()))
+          this.dataSourceFilter.push(item);
+      });
     }
+    if (!value) this.dataSourceFilter = this.dataSource;
+    this.pageIndex = 0;
   }
-}
 
-export interface TableHeroes {
-  id: number;
-  name: string;
-  fullName: string;
-  gender: string;
-  occupation: string;
-  action: string;
+  getPaginatedData() {
+    const start = this.pageIndex * this.pageSize;
+    const end = start + this.pageSize;
+    return this.dataSourceFilter.slice(start, end);
+  }
+
+  goToPage(event: any) {
+    this.pageIndex = event.pageIndex;
+    return this.getPaginatedData();
+  }
 }

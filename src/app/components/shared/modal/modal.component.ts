@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -15,14 +15,12 @@ export class ModalComponent {
     description: 'description',
   };
 
-  @Output() onSubmit = new EventEmitter<boolean>();
-
   constructor(public dialogRef: MatDialogRef<ModalComponent>) {}
 
   ngOnInit(): void {}
 
   handleSubmit(value: boolean) {
-    value ? this.onSubmit.emit(value) : this.dialogRef.close();
+    this.dialogRef.close(value);
   }
 }
 
