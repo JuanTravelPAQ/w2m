@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Hero } from 'src/app/services/models/heroes.model';
 import { HeroesService } from 'src/app/services/modules/heroes/heroes.service';
 @Component({
@@ -28,7 +28,8 @@ export class NewEditHeroComponent {
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private _heroesService: HeroesService
+    private _heroesService: HeroesService,
+    private router: Router
   ) {
     this.id = Number(this.activatedRoute.snapshot.paramMap.get('id')) ?? null;
     this.getHero();
@@ -58,6 +59,7 @@ export class NewEditHeroComponent {
             console.error(err);
           },
         });
+    this.router.navigate(['home']);
   }
 
   private getHero() {
